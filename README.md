@@ -36,7 +36,7 @@ The displayed number is the version **on the game's GitHub `main` branch**. The 
 
 ## Game suggestions
 
-Anyone can pitch a game idea from the homepage. The **💡 Suggest a game** button is in the header, the top section and under the game cards, and it jumps to the form (`#ideas`).
+Anyone can pitch a game idea from the homepage. The **💡 Suggest a game** button is in the header, the top section and under the game cards, and it opens a pop-up form. Linking to `https://zephino.github.io/Games/#suggest` opens the pop-up straight away, which is handy for sharing.
 
 Every idea becomes a GitHub Issue in this repository labelled `game-idea`, so they all land in one inbox: [open game ideas](https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+label%3Agame-idea). Ideas are never shown publicly on the homepage. Create the `game-idea` label once under [Issues → Labels](https://github.com/Zephino/Games/labels). If it's missing, ideas still arrive, just unlabelled.
 

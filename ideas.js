@@ -1,5 +1,8 @@
 /**
- * "Suggest a game" form for Zephino Games.
+ * "Suggest a game" pop-up for Zephino Games.
+ *
+ * Any [data-open-ideas] link opens the dialog, as does visiting the page with
+ * #suggest (or the older #ideas) in the URL.
  *
  * Submissions: if IDEAS_API is set and the Worker reports it is accepting,
  * ideas are sent there (no account needed) and become GitHub Issues labelled
@@ -13,7 +16,69 @@
   const IDEAS_API = "";
   const REPO = "Zephino/Games";
 
-  const form = document.querySelector("[data-idea-form]");
+  const modal = document.querySelector("[data-idea-modal]");
+  if (!modal || typeof modal.showModal !== "function") return;
+  const form = modal.querySelector("[data-idea-form]");
+
+  /* ---------- Opening and closing ---------- */
+
+  function showView(name) {
+    for (const view of modal.querySelectorAll("[data-view]")) {
+      view.hidden = view.dataset.view !== name;
+    }
+    if (name !== "form") modal.querySelector(`[data-view="${name}"] h2`).focus();
+  }
+
+  let closeToken = 0; // Bumped on open so a pending close is abandoned.
+
+  function openModal() {
+    closeToken++;
+    if (modal.classList.contains("closing")) {
+      // Reopened mid close animation: just stay open.
+      modal.classList.remove("closing");
+      return;
+    }
+    if (modal.open) return;
+    showView("form");
+    setStatus("", "");
+    modal.showModal();
+    // Skip auto-focusing the text box on touch screens so the keyboard
+    // doesn't cover the window the moment it opens.
+    if (window.matchMedia("(pointer: fine)").matches) form.elements.title.focus();
+    else modal.querySelector(".modal-close").focus();
+  }
+
+  function closeModal() {
+    if (!modal.open || modal.classList.contains("closing")) return;
+    modal.classList.add("closing");
+    const token = closeToken;
+    const finish = () => {
+      if (token !== closeToken || !modal.classList.contains("closing")) return;
+      modal.classList.remove("closing");
+      modal.close();
+    };
+    modal.addEventListener("animationend", finish, { once: true });
+    setTimeout(finish, 300);
+  }
+
+  for (const trigger of document.querySelectorAll("[data-open-ideas]")) {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal();
+    });
+  }
+  for (const button of modal.querySelectorAll("[data-close-ideas]")) {
+    button.addEventListener("click", closeModal);
+  }
+  // A click on the dialog element itself (not its content) is the backdrop.
+  modal.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+  modal.addEventListener("cancel", (event) => { event.preventDefault(); closeModal(); });
+  modal.querySelector("[data-idea-again]").addEventListener("click", () => {
+    showView("form");
+    form.elements.title.focus();
+  });
+
+  /* ---------- Submitting ideas ---------- */
 
   let apiReady = null; // Promise<boolean>, resolved once per visit.
   function checkApi() {
@@ -43,6 +108,11 @@
     status.dataset.state = state;
   }
 
+  function resetForm() {
+    form.reset();
+    updateCounter();
+  }
+
   async function submitIdea(event) {
     event.preventDefault();
     if (!form.reportValidity()) return;
@@ -64,13 +134,10 @@
       if (!IDEAS_API || !(await checkApi())) {
         const url = githubIssueUrl(data);
         window.open(url, "_blank", "noopener");
-        setStatus("GitHub opened in a new tab. Press “Create” there to send your idea. ", "ok");
-        const link = document.createElement("a");
-        link.href = url;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = "Didn't open? Click here.";
-        form.querySelector("[data-idea-status]").append(link);
+        modal.querySelector("[data-github-link]").href = url;
+        setStatus("", "");
+        resetForm();
+        showView("github");
         return;
       }
       const response = await fetch(IDEAS_API + "/ideas", {
@@ -80,9 +147,9 @@
       });
       const result = await response.json().catch(() => ({}));
       if (response.status === 201 && result.accepted) {
-        form.reset();
-        updateCounter();
-        setStatus("Thanks! Your idea was sent. I read every one.", "ok");
+        setStatus("", "");
+        resetForm();
+        showView("sent");
       } else {
         setStatus("Couldn't send: " + (result.error || "please try again later") + ".", "error");
       }
@@ -103,13 +170,13 @@
     const note = form.querySelector("[data-idea-route]");
     note.textContent = (await checkApi())
       ? "No account needed. Please don't include personal info."
-      : "This opens GitHub to post your idea (free account needed).";
+      : "Opens GitHub to post it (free account needed).";
   }
 
-  if (form) {
-    form.addEventListener("submit", submitIdea);
-    form.elements.description.addEventListener("input", updateCounter);
-    updateCounter();
-    describeRoute();
-  }
+  form.addEventListener("submit", submitIdea);
+  form.elements.description.addEventListener("input", updateCounter);
+  updateCounter();
+  describeRoute();
+
+  if (location.hash === "#suggest" || location.hash === "#ideas") openModal();
 })();
