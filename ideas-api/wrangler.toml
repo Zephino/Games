@@ -3,11 +3,11 @@ workers_dev = true
 main = "src/index.mjs"
 compatibility_date = "2024-10-01"
 
-# Create with: npx wrangler kv namespace create IDEAS_KV
-# Then paste the id below and uncomment.
-# [[kv_namespaces]]
-# binding = "IDEAS_KV"
-# id = "PASTE_KV_NAMESPACE_ID_HERE"
+# KV namespace "zephino-game-ideas" (daily suggestion limits). Keeping it here
+# means Git-triggered deploys don't drop the binding.
+[[kv_namespaces]]
+binding = "IDEAS_KV"
+id = "428917680488477f94f0763b8bce1108"
 
 [vars]
 GITHUB_OWNER = "Zephino"

@@ -38,29 +38,23 @@ The displayed number is the version **on the game's GitHub `main` branch**. The 
 
 Anyone can pitch a game idea from the homepage. The **💡 Suggest a game** button is in the header, the top section and under the game cards, and it opens a pop-up form. Linking to `https://zephino.github.io/Games/#suggest` opens the pop-up straight away, which is handy for sharing.
 
-Every idea becomes a GitHub Issue in this repository labelled `game-idea`, so they all land in one inbox: [open game ideas](https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+label%3Agame-idea). Ideas are never shown publicly on the homepage. Create the `game-idea` label once under [Issues → Labels](https://github.com/Zephino/Games/labels). If it's missing, ideas still arrive, just unlabelled.
+Every idea becomes a GitHub Issue in this repository titled `[Game idea] …`, so they all land in one inbox: [open game ideas](https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+%22%5BGame+idea%5D%22+in%3Atitle). Ideas are never shown publicly on the homepage. The Worker also tries to add a `game-idea` label. Create it once under [Issues → Labels](https://github.com/Zephino/Games/labels). If GitHub doesn't apply it, the idea still arrives with the title prefix.
 
-- **Before the Worker is set up**, the form opens a prefilled GitHub issue (`.github/ISSUE_TEMPLATE/game-idea.yml`). That works right away, but visitors need a free GitHub account.
-- **After the Worker is set up**, ideas are sent without any account, the same way Wave Defence's in-game *Suggest a Feature* works. See the steps below.
+The form sends ideas straight to a small Cloudflare Worker in `ideas-api/`, so visitors never need an account or leave the page. It's built like Wave Defence's `leaderboard-api` suggestions endpoint: strict length limits, a hidden spam trap, 3 ideas per visitor per day, 50 per day in total, escaped text and defused `@mentions`. Visitors' IP addresses are only stored as one-day hashes, never in issues. People already on GitHub can also use the **Suggest a game** issue form (`.github/ISSUE_TEMPLATE/game-idea.yml`).
 
-### Setting up the no-account Worker
+### Setting up the ideas Worker (one time, all in the browser)
 
-The Worker lives in `ideas-api/` and is built like Wave Defence's `leaderboard-api` suggestions endpoint: strict length limits, a hidden spam trap, 3 ideas per visitor per day, 50 per day in total, escaped text and defused `@mentions`. Visitors' IP addresses are only stored as one-day hashes, never in issues.
+1. **GitHub token.** Go to [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Name it `zephino-game-ideas`. Under **Repository access**, choose **Only select repositories → Zephino/Games**. Under **Permissions → Repository permissions**, set **Issues** to **Read and write**. Generate it and copy the token. Don't share it with anyone, including in chat.
+2. **KV storage** (for the daily limits). In the [Cloudflare dashboard](https://dash.cloudflare.com/), open **Storage & Databases → KV** and create a namespace called `IDEAS_KV`.
+3. **Create the Worker.** Open **Compute (Workers) → Workers & Pages → Create → Worker**, start from **Hello World**, name it `zephino-game-ideas` and deploy. Click **Edit code**, replace everything with the contents of [`ideas-api/src/index.mjs`](ideas-api/src/index.mjs), and click **Deploy**.
+4. **Connect the storage.** In the Worker's **Settings → Bindings**, add a **KV namespace** binding. Set the variable name to `IDEAS_KV` and pick the `IDEAS_KV` namespace.
+5. **Add the token.** In **Settings → Variables and Secrets**, add a variable of type **Secret** named `GITHUB_TOKEN` and paste the token from step 1.
+6. **Check it.** Open `https://zephino-game-ideas.<your-subdomain>.workers.dev/ideas`. It should show `{"accepting":true}`.
+7. **Connect the homepage.** Put that Worker address (without `/ideas`) into `IDEAS_API` at the top of `ideas.js` and commit. The address isn't secret.
 
-1. Create a fine-grained GitHub token with **Issues: Read and write** on `Zephino/Games` only.
-2. From `ideas-api/`:
+Until step 7 is done, the form says it couldn't reach the suggestion box.
 
-   ```bash
-   npm install
-   npx wrangler login
-   npx wrangler kv namespace create IDEAS_KV
-   # paste the id into wrangler.toml and uncomment the [[kv_namespaces]] block
-   npx wrangler secret put GITHUB_TOKEN
-   npm run deploy
-   ```
-
-3. Open `https://<your-worker>.workers.dev/ideas`. It should say `{"accepting":true}`.
-4. Paste that Worker URL (without `/ideas`) into `IDEAS_API` at the top of `ideas.js`, then commit.
+If you prefer the command line, `ideas-api/` also works with Wrangler: `npm install`, `npx wrangler login`, `npx wrangler kv namespace create IDEAS_KV` (paste the id into `wrangler.toml`), `npx wrangler secret put GITHUB_TOKEN`, then `npm run deploy`.
 
 Run the Worker tests with `npm test` in `ideas-api/`. They also run in GitHub Actions whenever `ideas-api/` changes.
 
