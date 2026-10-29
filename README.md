@@ -36,22 +36,12 @@ The displayed number is the version **on the game's GitHub `main` branch**. The 
 
 ## Game suggestions
 
-The homepage's **Suggest a game** section (`#ideas`) lets anyone pitch a game idea, and shows a public board of ideas you've picked, ranked by votes.
+Anyone can pitch a game idea from the homepage. The **💡 Suggest a game** button is in the header, the top section and under the game cards, and it jumps to the form (`#ideas`).
 
-**How ideas arrive.** Every idea becomes a GitHub Issue in this repository labelled `game-idea`, so they all land in one inbox: [open game ideas](https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+label%3Agame-idea).
+Every idea becomes a GitHub Issue in this repository labelled `game-idea`, so they all land in one inbox: [open game ideas](https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+label%3Agame-idea). Ideas are never shown publicly on the homepage. Create the `game-idea` label once under [Issues → Labels](https://github.com/Zephino/Games/labels). If it's missing, ideas still arrive, just unlabelled.
 
 - **Before the Worker is set up**, the form opens a prefilled GitHub issue (`.github/ISSUE_TEMPLATE/game-idea.yml`). That works right away, but visitors need a free GitHub account.
 - **After the Worker is set up**, ideas are sent without any account, the same way Wave Defence's in-game *Suggest a Feature* works. See the steps below.
-
-**How the board works.** Nothing appears on the homepage until you approve it, so spam or rude ideas never show up on your site.
-
-| To… | Do this on the issue |
-| --- | --- |
-| Show an idea on the board | Add the `idea-board` label |
-| Mark it as something you plan to make | Also add the `planned` label |
-| Take it off the board | Remove `idea-board`, or close the issue |
-
-The board shows the top 6 open `idea-board` issues, most 👍 reactions first. Visitors vote by leaving a 👍 on the issue (this needs a GitHub account). Create the three labels once under [Issues → Labels](https://github.com/Zephino/Games/labels): `game-idea`, `idea-board` and `planned`.
 
 ### Setting up the no-account Worker
 

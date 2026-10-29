@@ -3,9 +3,7 @@
  *
  * Each accepted idea becomes a GitHub Issue in Zephino/Games labelled
  * `game-idea`, created with a server-side token. Visitors need no account,
- * email or token. Nothing is shown on the homepage until the developer adds
- * the `idea-board` label to an issue (see ideas.js), so this endpoint can never
- * publish unmoderated text on the site.
+ * email or token. Ideas are never shown on the homepage.
  *
  * Defence in depth: strict field limits, a honeypot field, per-IP and global
  * daily caps. Cloudflare KV caps are best-effort, not atomic bot protection.
@@ -150,7 +148,7 @@ export async function handleIdeaPost(request, env, ip, githubFetch = fetch) {
       "**The idea:**",
       markdownQuote(checked.description),
       "",
-      "*Submitted without an account. To show this idea on the homepage board, add the `idea-board` label.*",
+      "*Submitted without an account. Please do not post personal information.*",
     ].join("\n"),
   };
   const createIssue = (payload) => githubFetch(`https://api.github.com/repos/${owner}/${repo}/issues`, {
