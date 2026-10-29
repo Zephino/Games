@@ -1,0 +1,37 @@
+name: Suggest a game
+description: Pitch a game you'd like Zephino to make.
+title: "[Game idea] "
+labels: ["game-idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! Short and specific is great. You can also use the form on the [Zephino Games homepage](https://zephino.github.io/Games/#ideas), which needs no GitHub account.
+  - type: dropdown
+    id: genre
+    attributes:
+      label: Genre
+      options:
+        - Action
+        - Adventure
+        - Roguelike
+        - Tower defence
+        - Strategy
+        - Puzzle
+        - Platformer
+        - RPG
+        - Racing
+        - Sports
+        - Simulation
+        - Horror
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What do you do in the game? What makes it fun?
+      placeholder: You run a tiny space station. Keep the crew alive, trade with passing ships, and survive meteor storms…
+    validations:
+      required: true
