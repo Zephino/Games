@@ -1,31 +1,32 @@
 # Zephino Games
 
-**The home for games by Zephino.** This repository hosts a lightweight, responsive game launcher at [zephino.github.io/Games](https://zephino.github.io/Games/) once GitHub Pages has been enabled.
+**Pick a world. Make it yours.**
 
-## Games
+The responsive home for independently developed games by Zephino.
 
-| Game | Browser build | Source / information |
+**🎮 [Visit Zephino Games](https://zephino.github.io/Games/)**
+
+## Available games
+
+| Game | Play online | Project |
 | --- | --- | --- |
-| **Mythriven** | [Play Mythriven](https://zephino.github.io/Mythriven/) | [Zephino/Mythriven](https://github.com/Zephino/Mythriven) |
-| **Wave Defence** | [Play Wave Defence](https://zephino.github.io/WaveDefence/) | [Zephino/WaveDefence](https://github.com/Zephino/WaveDefence) |
+| **Mythriven** — mythology-inspired roguelike survivor | [▶ Play Mythriven](https://zephino.github.io/Mythriven/) | [Repository](https://github.com/Zephino/Mythriven) |
+| **Wave Defence** — endless maze-building tower defence | [▶ Play Wave Defence](https://zephino.github.io/WaveDefence/) | [Repository](https://github.com/Zephino/WaveDefence) |
 
-Both are works in progress. Their browser builds are hosted in their respective repositories; the launcher does not copy or embed the game files.
+Both games are under active development. The launcher links directly to each game's authorized web build. It does not copy, host or embed the game executables. Each card's decorative vector artwork is an original illustration, not a screenshot from the game.
 
-## Publish the launcher
+## Publishing
 
-1. Open [Settings → Pages](https://github.com/Zephino/Games/settings/pages).
-2. Under **Build and deployment**, choose **GitHub Actions** as the source.
-3. The included `.github/workflows/pages.yml` deploys the static site whenever `main` is updated, or when started manually from the **Actions** tab.
-4. Visit <https://zephino.github.io/Games/> after a successful deployment.
+The source is a lightweight static website with `index.html` and `style.css` at the repository root. There are no build dependencies, API keys, user trackers or external fonts.
 
-The site is plain HTML/CSS; no package installs, build dependencies, API keys, trackers, or external fonts are required.
+If GitHub Pages is already set to **Deploy from a branch (main / root)**, GitHub will deploy the index file when the branch updates. If it is set to **GitHub Actions**, the included `.github/workflows/pages.yml` automatically builds and publishes the site on every push to `main`. The workflow also supports manual runs.
 
-## Add more games
+Check publishing status at [Actions](https://github.com/Zephino/Games/actions) or [Settings → Pages](https://github.com/Zephino/Games/settings/pages). Successful hosting should appear at <https://zephino.github.io/Games/>.
 
-Copy a `<article class="game-card ...">` block in `index.html` into the `#games` grid, then update the title, description, tags, illustration reference, and **official play** and **repository** URLs. Add a new SVG illustration in `assets/` (or use existing art you have the rights to use), and add a matching `game-card--...` CSS accent style if desired. Keep links pointing to the game's authorized hosted build rather than storing game builds in this repository.
+## Adding more games
 
-The artwork in this repo is stylized, original decorative **portal artwork**, not screenshots of the live games.
+In `index.html`, duplicate one of the `<article class="card ...">` elements within `<div class="cards">`. Update the displayed game name, description, features, illustration and links to the **official web build** and GitHub repository. The existing responsive styling in `style.css` applies automatically.
 
-## Copyright and licensing
+## License and copyright
 
-**© 2026 Zephino. All rights reserved.** This is a publicly viewable, source-available project, **not** an open-source grant. You can visit and use the official hosted site, but cannot copy, modify, redistribute, or commercially exploit its code, design, or assets without permission. See [LICENSE](LICENSE). The games linked from this site remain under their respective licenses.
+**© 2026 Zephino. All rights reserved.** As with Mythriven and Wave Defence, this project is **source-available, not open-source**. Public visibility does not grant permission to copy, modify, redistribute or commercially exploit the code or assets. See [LICENSE](LICENSE). Individual games keep their own respective licenses.
