@@ -12,7 +12,7 @@
 
   // Paste the deployed Worker URL here (no trailing slash), e.g.
   // "https://zephino-game-ideas.example.workers.dev". See README.
-  const IDEAS_API = "";
+  const IDEAS_API = "https://zephino-game-ideas.thebotcoder.workers.dev";
 
   const modal = document.querySelector("[data-idea-modal]");
   if (!modal || typeof modal.showModal !== "function") return;
