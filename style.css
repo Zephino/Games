@@ -32,3 +32,29 @@ footer{border-top:1px solid rgba(173,189,233,.11);background:#080b16}.foot{min-h
 @media(max-width:720px){.wrap{width:min(100% - 36px,560px)}.navwrap{height:70px}.brand-icon{height:36px;width:36px;font-size:22px}.brand-name{font-size:16px}.brand-name small{font-size:8px}nav{gap:15px}nav a:not(.git-link){display:none}nav .git-link{padding:9px 11px}.hero{display:block;min-height:0;padding:75px 0 73px}h1{font-size:clamp(44px,10vw,64px)}.lead{font-size:16px}.emblem{display:none}.facts{margin-top:30px;gap:10px 14px}.facts span+span{border:0;padding:0}.collection{padding-block:73px}.section-heading{display:block;margin-bottom:28px}.section-heading>p{max-width:410px;margin-top:16px}.cards{grid-template-columns:1fr;gap:22px}.description{min-height:0}.game-title{flex-direction:row;align-items:end}.coming{padding:20px}.about{padding-block:75px}.about-layout{grid-template-columns:1fr;gap:25px}.foot{flex-direction:column;padding-block:24px;gap:13px}.foot p{order:3}}
 @media(max-width:460px){h1{font-size:43px}.hero-cta{align-items:stretch;flex-direction:column}.hero-cta .btn{width:100%}.game-title{align-items:start;flex-direction:column}.art-footer{left:14px;right:11px;font-size:8px}.card-content{padding:22px}.actions{align-items:start;flex-direction:column;gap:17px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* GitHub-powered version labels: always pulled from each game's VERSION file. */
+.version-badge{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  margin-top:10px;
+  padding:5px 9px;
+  border:1px solid rgba(160,178,238,.17);
+  border-radius:6px;
+  background:rgba(181,190,239,.06);
+  color:#9daac5;
+  font-size:11px;
+  font-weight:750;
+  letter-spacing:.025em;
+  font-variant-numeric:tabular-nums;
+}
+.myth .version-badge[data-version-state="loaded"]{
+  border-color:rgba(191,170,255,.22);
+  color:#cdb9ff;
+}
+.wave .version-badge[data-version-state="loaded"]{
+  border-color:rgba(121,234,218,.2);
+  color:#9ae9dd;
+}
