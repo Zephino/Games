@@ -17,6 +17,7 @@
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./style.css">
 <script src="./versions.js" defer></script>
+<script src="./ideas.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#games">Skip to games</a>
@@ -24,7 +25,7 @@
 <header class="site-header">
 <div class="wrap navwrap">
 <a class="brand" href="./" aria-label="Zephino Games home"><span class="brand-icon" aria-hidden="true">Z</span><span class="brand-name">ZEPHINO<small>GAMES</small></span></a>
-<nav aria-label="Site"><a href="#games">The games</a><a href="#about">About</a><a href="https://github.com/Zephino" class="git-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
+<nav aria-label="Site"><a href="#games">The games</a><a href="#ideas">Suggest a game</a><a href="#about">About</a><a href="https://github.com/Zephino" class="git-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
 </div>
 </header>
 <main>
@@ -86,9 +87,29 @@
 <div class="actions"><a class="play" href="https://zephino.github.io/WaveDefence/" target="_blank" rel="noopener noreferrer"><span class="play-bubble">▶</span> Play in browser ↗</a><a class="more" href="https://github.com/Zephino/WaveDefence" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a></div></div>
 </article>
 </div>
-<div class="coming"><span class="asterisk" aria-hidden="true">✳</span><div><strong>More worlds are on the horizon.</strong><p>New projects will join the collection as they're ready.</p></div><span class="coming-note">THE NEXT CHAPTER IS LOADING ···</span></div>
+<div class="coming"><span class="asterisk" aria-hidden="true">✳</span><div><strong>More worlds are on the horizon.</strong><p>New projects will join the collection as they're ready. Got an idea? <a href="#ideas">Suggest a game</a>.</p></div><span class="coming-note">THE NEXT CHAPTER IS LOADING ···</span></div>
 </div></section>
-<section class="about wrap" id="about"><div class="about-layout"><div><p class="eyebrow purple">02 / BEHIND THE GAMES</p><h2>Built to be <em>played.</em></h2></div><div class="about-text"><p>Zephino Games is a home for independently developed games, experiments, and new ideas. Each game has its own world, its own challenges, and plenty more to come.</p><p class="note">These are development builds. Features and availability may change as the projects evolve.</p><a href="https://github.com/Zephino" target="_blank" rel="noopener noreferrer">Follow development on GitHub ↗</a></div></div></section>
+<section class="ideas" id="ideas"><div class="wrap ideas-layout">
+<div class="ideas-intro">
+<p class="eyebrow purple">02 / YOUR IDEAS</p>
+<h2>What should I <em>make next?</em></h2>
+<p class="ideas-lead">Got a game you wish existed? Pitch it. Every idea gets read, and the best ones go on the board below for everyone to vote on.</p>
+<h3 class="board-title">On the idea board</h3>
+<ol class="idea-board" data-idea-board data-state="loading"></ol>
+<p class="board-note">Vote with a 👍 on GitHub. The most-wanted ideas rise to the top. <a href="https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+label%3Aidea-board" target="_blank" rel="noopener noreferrer">See all ↗</a></p>
+</div>
+<form class="idea-form" data-idea-form novalidate>
+<div class="field"><label for="idea-title">Game idea</label><input id="idea-title" name="title" required minlength="3" maxlength="80" placeholder="e.g. Space station survival" autocomplete="off"></div>
+<div class="field"><label for="idea-genre">Genre</label><select id="idea-genre" name="genre" required><option value="" disabled selected>Pick one</option><option>Action</option><option>Adventure</option><option>Roguelike</option><option>Tower defence</option><option>Strategy</option><option>Puzzle</option><option>Platformer</option><option>RPG</option><option>Racing</option><option>Sports</option><option>Simulation</option><option>Horror</option><option>Other</option></select></div>
+<div class="field"><label for="idea-description">What's it about? <span class="count" data-idea-count aria-live="off"></span></label><textarea id="idea-description" name="description" required minlength="20" maxlength="1500" rows="5" placeholder="What do you do in the game? What makes it fun?"></textarea></div>
+<div class="field"><label for="idea-name">Your name <span class="optional">optional</span></label><input id="idea-name" name="name" maxlength="24" pattern="[\p{L}\p{N} _.\-]+" placeholder="Shown as the idea's author" autocomplete="nickname"></div>
+<div class="honeypot" aria-hidden="true"><label for="idea-website">Leave this empty</label><input id="idea-website" name="website" tabindex="-1" autocomplete="off"></div>
+<button type="submit" class="btn primary">Send my idea <span>→</span></button>
+<p class="route" data-idea-route></p>
+<p class="form-status" data-idea-status role="status" aria-live="polite"></p>
+</form>
+</div></section>
+<section class="about wrap" id="about"><div class="about-layout"><div><p class="eyebrow purple">03 / BEHIND THE GAMES</p><h2>Built to be <em>played.</em></h2></div><div class="about-text"><p>Zephino Games is a home for independently developed games, experiments, and new ideas. Each game has its own world, its own challenges, and plenty more to come.</p><p class="note">These are development builds. Features and availability may change as the projects evolve.</p><a href="https://github.com/Zephino" target="_blank" rel="noopener noreferrer">Follow development on GitHub ↗</a></div></div></section>
 </main>
 <footer><div class="wrap foot"><div class="foot-brand"><span>✦</span> ZEPHINO <span>GAMES</span></div><p>© 2026 Zephino. All rights reserved. <a href="https://github.com/Zephino/Games/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Copyright &amp; terms</a></p><a href="#" class="top-link">Back to top ↑</a></div></footer>
 </body>

@@ -58,3 +58,40 @@ footer{border-top:1px solid rgba(173,189,233,.11);background:#080b16}.foot{min-h
   border-color:rgba(121,234,218,.2);
   color:#9ae9dd;
 }
+
+/* Suggest a game: form plus the moderated idea board (see ideas.js). */
+.ideas{padding-block:98px 100px;border-bottom:1px solid rgba(197,205,255,.1)}
+.ideas-layout{display:grid;grid-template-columns:1fr minmax(0,460px);gap:70px;align-items:start}
+.ideas h2{font-size:clamp(35px,4.2vw,51px);line-height:1.13;letter-spacing:-.035em;margin:16px 0 0}.ideas h2 em{color:var(--purple);font-style:normal}
+.ideas-lead{color:#b0bace;font-size:15px;line-height:1.85;margin:20px 0 0;max-width:500px}
+.board-title{margin:42px 0 14px;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#8e9ab5}
+.idea-board{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.idea-board li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-radius:11px;background:var(--panel);border:1px solid rgba(185,197,239,.14)}
+.idea-board strong{display:block;font-size:15px;overflow-wrap:anywhere}
+.idea-meta{display:flex;align-items:center;gap:8px;margin-top:4px;font-size:12px;color:#8e9ab5}
+.idea-meta b{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#0b1327;background:var(--aqua);padding:2px 7px;border-radius:5px}
+.idea-vote{flex:none;font-size:13px;font-weight:800;padding:8px 11px;border-radius:9px;border:1px solid rgba(192,202,245,.2);color:#e1e7f5;font-variant-numeric:tabular-nums}.idea-vote:hover{background:rgba(192,202,245,.1)}
+.idea-board:empty{padding:18px 16px;border-radius:11px;border:1px dashed rgba(177,190,247,.22);color:#8997b4;font-size:13px}
+.idea-board[data-state="loading"]:empty::before{content:"Loading ideas…"}
+.idea-board[data-state="empty"]:empty::before{content:"No ideas on the board yet. Yours could be the first."}
+.idea-board[data-state="unavailable"]:empty::before{content:"The idea board couldn't load right now."}
+.board-note{margin:14px 0 0;font-size:12px;color:#8491ac;line-height:1.7}.board-note a{color:#92e8ed;font-weight:800}.board-note a:hover{color:#fff}
+.idea-form{background:var(--panel);border:1px solid rgba(185,197,239,.19);border-radius:17px;padding:28px;display:grid;gap:18px}
+.field{display:grid;gap:8px}.field label{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:800;color:#d5d9e9}
+.field .count,.field .optional{font-weight:650;color:#717b94}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:14px;color:var(--text);background:#0d1121;border:1px solid rgba(185,197,239,.2);border-radius:9px;padding:12px 13px;transition:border-color .2s}
+.field textarea{resize:vertical;min-height:120px;line-height:1.6}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#8e9ab5 50%),linear-gradient(135deg,#8e9ab5 50%,transparent 50%);background-position:calc(100% - 19px) 52%,calc(100% - 14px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+.field input::placeholder,.field textarea::placeholder{color:#5f6a85}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:none;border-color:var(--aqua);box-shadow:0 0 0 3px rgba(134,233,233,.15)}
+.honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.idea-form .btn{border:0;cursor:pointer;font-family:inherit;justify-self:start}.idea-form .btn:disabled{opacity:.6;cursor:wait;transform:none}
+.idea-form button:focus-visible{outline:3px solid var(--aqua);outline-offset:4px}
+.route{margin:-6px 0 0;font-size:12px;color:#8491ac}
+.form-status{margin:0;font-size:13px;line-height:1.6}.form-status:empty{display:none}.form-status[data-state="ok"]{color:#98eadf}.form-status[data-state="error"]{color:#ffab95}.form-status[data-state="busy"]{color:#a4aec4}.form-status a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.coming p a{color:#b7a8ff;font-weight:800}.coming p a:hover{color:#fff}
+@media(max-width:980px){.ideas-layout{grid-template-columns:1fr;gap:44px}.idea-form{max-width:560px}}
+@media(max-width:720px){.ideas{padding-block:73px}nav a[href="#ideas"]{display:inline}nav a[href="#about"]{display:none}}
+@media(max-width:460px){.idea-form{padding:22px}.idea-form .btn{width:100%}}
+nav a{white-space:nowrap}
+@media(max-width:400px){nav a[href="#ideas"]{display:none}}

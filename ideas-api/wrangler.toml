@@ -1,0 +1,17 @@
+name = "zephino-game-ideas"
+workers_dev = true
+main = "src/index.mjs"
+compatibility_date = "2024-10-01"
+
+# Create with: npx wrangler kv namespace create IDEAS_KV
+# Then paste the id below and uncomment.
+# [[kv_namespaces]]
+# binding = "IDEAS_KV"
+# id = "PASTE_KV_NAMESPACE_ID_HERE"
+
+[vars]
+GITHUB_OWNER = "Zephino"
+GITHUB_REPO = "Games"
+
+# Set secret (do not commit tokens):
+#   npx wrangler secret put GITHUB_TOKEN

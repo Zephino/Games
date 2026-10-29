@@ -17,7 +17,7 @@ Both games are under active development. The launcher links directly to each gam
 
 ## Publishing
 
-The source is a lightweight static website with `index.html`, `style.css`, `versions.js` and the `social.png` link-preview image at the repository root. There are no build dependencies, API keys, user trackers or external fonts.
+The source is a lightweight static website with `index.html`, `style.css`, `versions.js`, `ideas.js` and the `social.png` link-preview image at the repository root. The optional suggestion Worker in `ideas-api/` is deployed separately to Cloudflare. There are no build dependencies, API keys, user trackers or external fonts.
 
 If GitHub Pages is already set to **Deploy from a branch (main / root)**, GitHub will deploy the index file when the branch updates. If it is set to **GitHub Actions**, the included `.github/workflows/pages.yml` automatically builds and publishes the site on every push to `main`. The workflow also supports manual runs.
 
@@ -33,6 +33,46 @@ The homepage reads the version number directly from each public game's `VERSION`
 `versions.js` requests those files from GitHub when the homepage opens, then checks again every five minutes while the page is visible. It deliberately bypasses the browser cache and uses plain text for display. **You do not need to update or redeploy the Games homepage when a game's VERSION file changes.** No API key or backend is needed. If GitHub cannot be reached, the card says `Version unavailable` (or keeps the last successfully loaded version for that visit).
 
 The displayed number is the version **on the game's GitHub `main` branch**. The playable web build may temporarily be older while its GitHub Pages deployment runs.
+
+## Game suggestions
+
+The homepage's **Suggest a game** section (`#ideas`) lets anyone pitch a game idea, and shows a public board of ideas you've picked, ranked by votes.
+
+**How ideas arrive.** Every idea becomes a GitHub Issue in this repository labelled `game-idea`, so they all land in one inbox: [open game ideas](https://github.com/Zephino/Games/issues?q=is%3Aissue+is%3Aopen+label%3Agame-idea).
+
+- **Before the Worker is set up**, the form opens a prefilled GitHub issue (`.github/ISSUE_TEMPLATE/game-idea.yml`). That works right away, but visitors need a free GitHub account.
+- **After the Worker is set up**, ideas are sent without any account, the same way Wave Defence's in-game *Suggest a Feature* works. See the steps below.
+
+**How the board works.** Nothing appears on the homepage until you approve it, so spam or rude ideas never show up on your site.
+
+| To… | Do this on the issue |
+| --- | --- |
+| Show an idea on the board | Add the `idea-board` label |
+| Mark it as something you plan to make | Also add the `planned` label |
+| Take it off the board | Remove `idea-board`, or close the issue |
+
+The board shows the top 6 open `idea-board` issues, most 👍 reactions first. Visitors vote by leaving a 👍 on the issue (this needs a GitHub account). Create the three labels once under [Issues → Labels](https://github.com/Zephino/Games/labels): `game-idea`, `idea-board` and `planned`.
+
+### Setting up the no-account Worker
+
+The Worker lives in `ideas-api/` and is built like Wave Defence's `leaderboard-api` suggestions endpoint: strict length limits, a hidden spam trap, 3 ideas per visitor per day, 50 per day in total, escaped text and defused `@mentions`. Visitors' IP addresses are only stored as one-day hashes, never in issues.
+
+1. Create a fine-grained GitHub token with **Issues: Read and write** on `Zephino/Games` only.
+2. From `ideas-api/`:
+
+   ```bash
+   npm install
+   npx wrangler login
+   npx wrangler kv namespace create IDEAS_KV
+   # paste the id into wrangler.toml and uncomment the [[kv_namespaces]] block
+   npx wrangler secret put GITHUB_TOKEN
+   npm run deploy
+   ```
+
+3. Open `https://<your-worker>.workers.dev/ideas`. It should say `{"accepting":true}`.
+4. Paste that Worker URL (without `/ideas`) into `IDEAS_API` at the top of `ideas.js`, then commit.
+
+Run the Worker tests with `npm test` in `ideas-api/`. They also run in GitHub Actions whenever `ideas-api/` changes.
 
 ## Adding more games
 
