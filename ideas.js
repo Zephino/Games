@@ -4,9 +4,8 @@
  * Any [data-open-ideas] link opens the dialog, as does visiting the page with
  * #suggest (or the older #ideas) in the URL.
  *
- * Submissions: if IDEAS_API is set and the Worker reports it is accepting,
- * ideas are sent there (no account needed) and become GitHub Issues labelled
- * `game-idea`. Otherwise the form opens a prefilled GitHub issue instead.
+ * Submissions go straight to the ideas Worker (no account needed), which
+ * files each one as a GitHub Issue labelled `game-idea`. See README.
  */
 (() => {
   "use strict";
@@ -14,7 +13,6 @@
   // Paste the deployed Worker URL here (no trailing slash), e.g.
   // "https://zephino-game-ideas.example.workers.dev". See README.
   const IDEAS_API = "";
-  const REPO = "Zephino/Games";
 
   const modal = document.querySelector("[data-idea-modal]");
   if (!modal || typeof modal.showModal !== "function") return;
@@ -80,28 +78,6 @@
 
   /* ---------- Submitting ideas ---------- */
 
-  let apiReady = null; // Promise<boolean>, resolved once per visit.
-  function checkApi() {
-    if (!IDEAS_API) return Promise.resolve(false);
-    if (!apiReady) {
-      apiReady = fetch(IDEAS_API + "/ideas", { cache: "no-store" })
-        .then((r) => r.ok ? r.json() : {})
-        .then((d) => d.accepting === true)
-        .catch(() => false);
-    }
-    return apiReady;
-  }
-
-  function githubIssueUrl(data) {
-    const params = new URLSearchParams({
-      template: "game-idea.yml",
-      title: "[Game idea] " + data.title,
-      genre: data.genre,
-      idea: data.description,
-    });
-    return `https://github.com/${REPO}/issues/new?` + params.toString();
-  }
-
   function setStatus(text, state) {
     const status = form.querySelector("[data-idea-status]");
     status.textContent = text;
@@ -129,17 +105,7 @@
     setStatus("Sending…", "busy");
 
     try {
-      // Without a Worker, open GitHub before any await so Safari treats the
-      // new tab as part of the click and doesn't block it.
-      if (!IDEAS_API || !(await checkApi())) {
-        const url = githubIssueUrl(data);
-        window.open(url, "_blank", "noopener");
-        modal.querySelector("[data-github-link]").href = url;
-        setStatus("", "");
-        resetForm();
-        showView("github");
-        return;
-      }
+      if (!IDEAS_API) throw new Error("IDEAS_API is not set");
       const response = await fetch(IDEAS_API + "/ideas", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -166,17 +132,9 @@
       area.value.length + " / " + area.maxLength;
   }
 
-  async function describeRoute() {
-    const note = form.querySelector("[data-idea-route]");
-    note.textContent = (await checkApi())
-      ? "No account needed. Please don't include personal info."
-      : "Opens GitHub to post it (free account needed).";
-  }
-
   form.addEventListener("submit", submitIdea);
   form.elements.description.addEventListener("input", updateCounter);
   updateCounter();
-  describeRoute();
 
   if (location.hash === "#suggest" || location.hash === "#ideas") openModal();
 })();

@@ -105,16 +105,12 @@
 <div class="field"><label for="idea-name">Your name <span class="optional">optional</span></label><input id="idea-name" name="name" maxlength="24" pattern="[\p{L}\p{N} _.\-]+" placeholder="So I know who to thank" autocomplete="nickname"></div>
 <div class="honeypot" aria-hidden="true"><label for="idea-website">Leave this empty</label><input id="idea-website" name="website" tabindex="-1" autocomplete="off"></div>
 <p class="form-status" data-idea-status role="status" aria-live="polite"></p>
-<div class="modal-foot"><p class="route" data-idea-route></p><button type="submit" class="btn primary">Send my idea <span>→</span></button></div>
+<div class="modal-foot"><p class="route">No account needed. Please don't include personal info.</p><button type="submit" class="btn primary">Send my idea <span>→</span></button></div>
 </form>
 </div>
 <div class="modal-view modal-result" data-view="sent" hidden>
 <span class="result-icon" aria-hidden="true">✓</span><h2 tabindex="-1">Idea sent!</h2><p>Thanks for sharing it. I read every suggestion, and the best ones could become the next world in the collection.</p>
 <div class="result-actions"><button type="button" class="btn secondary" data-idea-again>Suggest another</button><button type="button" class="btn primary" data-close-ideas>Back to the games</button></div>
-</div>
-<div class="modal-view modal-result" data-view="github" hidden>
-<span class="result-icon gh" aria-hidden="true">↗</span><h2 tabindex="-1">Almost there!</h2><p>Your idea is filled in on GitHub in a new tab. Press <b>Create</b> there to send it.</p>
-<div class="result-actions"><a class="btn secondary" data-github-link href="https://github.com/Zephino/Games/issues/new?template=game-idea.yml" target="_blank" rel="noopener noreferrer">Tab didn't open? Open GitHub ↗</a><button type="button" class="btn primary" data-close-ideas>Done</button></div>
 </div>
 </div>
 </dialog>
