@@ -17,7 +17,7 @@ Both games are under active development. The launcher links directly to each gam
 
 ## Publishing
 
-The source is a lightweight static website with `index.html` and `style.css` at the repository root. There are no build dependencies, API keys, user trackers or external fonts.
+The source is a lightweight static website with `index.html`, `style.css`, `versions.js` and the `social.png` link-preview image at the repository root. There are no build dependencies, API keys, user trackers or external fonts.
 
 If GitHub Pages is already set to **Deploy from a branch (main / root)**, GitHub will deploy the index file when the branch updates. If it is set to **GitHub Actions**, the included `.github/workflows/pages.yml` automatically builds and publishes the site on every push to `main`. The workflow also supports manual runs.
 
@@ -36,7 +36,14 @@ The displayed number is the version **on the game's GitHub `main` branch**. The 
 
 ## Adding more games
 
-In `index.html`, duplicate one of the `<article class="card ...">` elements within `<div class="cards">`. Update the displayed game name, description, features, illustration and links to the **official web build** and GitHub repository. The existing responsive styling in `style.css` applies automatically.
+In `index.html`, duplicate one of the `<article class="card ...">` elements within `<div class="cards">`. Update the displayed game name, genre, status, description, tags, the **Plays on** line (devices and controls), illustration and links to the **official web build** and GitHub repository. The existing responsive styling in `style.css` applies automatically.
+
+A few other places mention the games and need updating too:
+
+- The `02` game count in the hero (`.facts`).
+- The `description` and `og:description` meta tags in `<head>`, which name each game.
+- `VERSION_URLS` in `versions.js`, plus a `data-version-repo` badge on the new card.
+- `social.png`, the 1200×630 preview image shown when the link is shared (Discord, iMessage, X and similar). Regenerate it to include the new game.
 
 ## License and copyright
 
