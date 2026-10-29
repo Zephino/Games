@@ -23,6 +23,17 @@ If GitHub Pages is already set to **Deploy from a branch (main / root)**, GitHub
 
 Check publishing status at [Actions](https://github.com/Zephino/Games/actions) or [Settings → Pages](https://github.com/Zephino/Games/settings/pages). Successful hosting should appear at <https://zephino.github.io/Games/>.
 
+## Automatic game versions
+
+The homepage reads the version number directly from each public game's `VERSION` file on the `main` branch:
+
+- [Mythriven/VERSION](https://github.com/Zephino/Mythriven/blob/main/VERSION)
+- [WaveDefence/VERSION](https://github.com/Zephino/WaveDefence/blob/main/VERSION)
+
+`versions.js` requests those files from GitHub when the homepage opens, then checks again every five minutes while the page is visible. It deliberately bypasses the browser cache and uses plain text for display. **You do not need to update or redeploy the Games homepage when a game's VERSION file changes.** No API key or backend is needed. If GitHub cannot be reached, the card says `Version unavailable` (or keeps the last successfully loaded version for that visit).
+
+The displayed number is the version **on the game's GitHub `main` branch**. The playable web build may temporarily be older while its GitHub Pages deployment runs.
+
 ## Adding more games
 
 In `index.html`, duplicate one of the `<article class="card ...">` elements within `<div class="cards">`. Update the displayed game name, description, features, illustration and links to the **official web build** and GitHub repository. The existing responsive styling in `style.css` applies automatically.
