@@ -21,7 +21,9 @@ There is no bubblewrap or btrfs sandbox here, so the "dry run" is:
 
 ## Publishing
 
-- Merging to `main` publishes the site (GitHub Pages) and redeploys the ideas Worker (Cloudflare Git build, root `ideas-api`). Work on a branch and **ask the owner before merging to `main`** unless they've said to in that request.
+- Merging to `main` publishes the site (GitHub Pages) and redeploys the ideas Worker (Cloudflare Git build, root `ideas-api`).
+- **Standing permission from the owner: merge finished work to `main` without asking.** Work on a branch, run the checks under "Verifying changes", then open a pull request and merge it so the change goes live. Tell the owner it's live and link the PR.
+- **Only merge when the checks pass.** If a check fails, or a change would weaken a protected item below, don't merge. Report what failed instead.
 - Never commit tokens. `GITHUB_TOKEN` lives only in the Worker's Cloudflare secrets.
 
 ## Project State Ledger
