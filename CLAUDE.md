@@ -18,6 +18,7 @@ There is no bubblewrap or btrfs sandbox here, so the "dry run" is:
 - Worker: `cd ideas-api && node --test test/*.test.mjs`
 - Page: serve the repo (`python3 -m http.server`) and drive it with Playwright (pre-installed). Check at 320, 375 and 1440 px wide, confirm no horizontal scroll, and look at screenshots before calling a visual change done.
 - Docs and copy: the `claim-verification` skill.
+- **Cache version:** `index.html` loads `style.css` and the scripts with `?v=<date><letter>`. Whenever you change any of them, bump that value in all four places (for example `2026-10-31a` → `2026-10-31b`). Otherwise visitors can get the new page with a cached old stylesheet for up to 10 minutes.
 
 ## Publishing
 
