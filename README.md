@@ -17,7 +17,7 @@ Both games are under active development. The launcher links directly to each gam
 
 ## Publishing
 
-The source is a lightweight static website with `index.html`, `style.css`, `versions.js`, `ideas.js` and the `social.png` link-preview image at the repository root. The optional suggestion Worker in `ideas-api/` is deployed separately to Cloudflare. There are no build dependencies, API keys, user trackers or external fonts.
+The source is a lightweight static website with `index.html`, `style.css`, `versions.js`, `ideas.js`, `changelog.js` and the `social.png` link-preview image at the repository root. The optional suggestion Worker in `ideas-api/` is deployed separately to Cloudflare. There are no build dependencies, API keys, user trackers or external fonts.
 
 If GitHub Pages is already set to **Deploy from a branch (main / root)**, GitHub will deploy the index file when the branch updates. If it is set to **GitHub Actions**, the included `.github/workflows/pages.yml` automatically builds and publishes the site on every push to `main`. The workflow also supports manual runs.
 
@@ -33,6 +33,12 @@ The homepage reads the version number directly from each public game's `VERSION`
 `versions.js` requests those files from GitHub when the homepage opens, then checks again every five minutes while the page is visible. It deliberately bypasses the browser cache and uses plain text for display. **You do not need to update or redeploy the Games homepage when a game's VERSION file changes.** No API key or backend is needed. If GitHub cannot be reached, the card says `Version unavailable` (or keeps the last successfully loaded version for that visit).
 
 The displayed number is the version **on the game's GitHub `main` branch**. The playable web build may temporarily be older while its GitHub Pages deployment runs.
+
+## Game changelogs
+
+Each game card has a **📜 Changelog** link, and its version badge (**Version … · What's new**) opens the same pop-up. It shows that game's latest updates, newest first, with **Show older updates** to page back and a link to the full file on GitHub. Linking to `https://zephino.github.io/Games/#changelog-mythriven` or `#changelog-wavedefence` opens it straight away.
+
+`changelog.js` reads each game's `CHANGELOG.md` from its `main` branch when the pop-up opens, the same way `versions.js` reads `VERSION`, so new entries appear without changing this site. It expects the format both games already use: `## Version …`, then `Date:` and `Time:` lines, then `### Changes` and `### Reason` sections. If GitHub can't be reached, the pop-up says so and still links to the full changelog.
 
 ## Game suggestions
 
@@ -67,6 +73,7 @@ A few other places mention the games and need updating too:
 - The `02` game count in the hero (`.facts`).
 - The `description` and `og:description` meta tags in `<head>`, which name each game.
 - `VERSION_URLS` in `versions.js`, plus a `data-version-repo` badge on the new card.
+- `GAMES` in `changelog.js`, plus `data-open-log` on the new card's badge and 📜 Changelog link.
 - `social.png`, the 1200×630 preview image shown when the link is shared (Discord, iMessage, X and similar). Regenerate it to include the new game.
 
 ## License and copyright

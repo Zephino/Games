@@ -38,6 +38,7 @@ A homepage that showcases Zephino's browser games and lets anyone suggest a game
 - **PROTOCOL-04:** Worker protections: field limits, honeypot, 3 ideas per visitor per day, 50 per day in total, escaped Markdown, `@` mentions defused.
 - **SOLVED-01:** End-to-end submission works. The owner's test idea arrived as issue #4 with the `game-idea` label (checked through the GitHub API).
 - **SOLVED-02:** Game versions load live from each game's `VERSION` file (`versions.js`).
+- **SOLVED-03:** Each game's changelog opens in a pop-up from its version badge, its 📜 Changelog link, or `/#changelog-<repo>`. It loads live from that game's `CHANGELOG.md` on `main` (`changelog.js`) and is rendered as text only. Checked with both games' real changelogs: all 130 Mythriven entries render, and a load failure shows an error plus the GitHub link.
 
 ### Open
 - **OPEN-01 [LOAD-BEARING]:** `[TBD: GITHUB_TOKEN expiry date]`. Fine-grained GitHub tokens expire. When this one does, every submission fails with a GitHub 401 and nobody is notified. The owner should check the expiry, and a token renewal reminder or health check is worth adding.

@@ -119,3 +119,28 @@ fieldset.field{border:0;margin:0;padding:0}.field legend{padding:0;margin-bottom
 @keyframes sheet-in{from{transform:translateY(100%)}}
 @keyframes sheet-out{to{transform:translateY(100%)}}
 @media(max-width:460px){nav .git-link{display:none}}
+
+/* Changelog pop-up (see changelog.js). Reuses the .idea-modal shell. */
+button.version-badge{font-family:inherit;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+button.version-badge::after{content:"· What's new";margin-left:6px;opacity:.7;font-weight:650}
+button.version-badge:hover{background:rgba(181,190,239,.14);color:#fff}
+button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:3px}
+.more-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.log-modal{width:min(760px,calc(100% - 32px))}
+.log-status{margin:0 0 16px;font-size:13px;color:#a4aec4}.log-status:empty{display:none}.log-status[data-state="error"]{color:#ffbcab;padding:10px 13px;border-radius:9px;background:rgba(250,148,121,.1)}
+.log-list{display:grid;gap:14px}
+.log-entry{padding:18px 20px;border-radius:13px;background:rgba(8,11,23,.45);border:1px solid rgba(185,197,239,.14)}
+.log-entry header{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.log-entry h3{margin:0;font-size:17px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.log-latest{display:inline-block;vertical-align:2px;margin-left:4px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#091321;background:linear-gradient(100deg,#8de4eb,#c3b5ff);padding:3px 7px;border-radius:5px}
+.log-when{margin:0;font-size:12px;color:#8491ac;font-variant-numeric:tabular-nums}
+.log-section h4{margin:12px 0 6px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#a99dfc}
+.log-section ul{margin:0;padding-left:18px;display:grid;gap:6px}.log-section ul ul{margin-top:6px}
+.log-section li,.log-section p{font-size:13.5px;line-height:1.7;color:#c0c8da;overflow-wrap:anywhere}.log-section p{margin:0 0 6px}
+.log-section li::marker{color:#6f7da0}
+.log-section strong{color:#eef1f8}
+.log-section code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#9ae9dd;background:rgba(121,234,218,.08);padding:1px 5px;border-radius:4px}
+.log-reason{margin-top:4px;padding-top:2px}.log-reason h4{color:#86e9e9}.log-reason p,.log-reason li{color:#a9b3c8}
+.log-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid rgba(182,193,244,.13)}
+.log-full{font-size:13px;font-weight:800;color:#92e8ed}.log-full:hover{color:#fff}
+@media(max-width:560px){.log-modal{width:100%}.log-entry{padding:15px 14px}.log-foot{flex-direction:column;align-items:stretch;text-align:center}.log-foot .btn{width:100%}}
