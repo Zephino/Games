@@ -144,3 +144,11 @@ button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:
 .log-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid rgba(182,193,244,.13)}
 .log-full{font-size:13px;font-weight:800;color:#92e8ed}.log-full:hover{color:#fff}
 @media(max-width:560px){.log-modal{width:100%}.log-entry{padding:15px 14px}.log-foot{flex-direction:column;align-items:stretch;text-align:center}.log-foot .btn{width:100%}}
+
+/* Support / donations (About section and footer). */
+.support{display:flex;align-items:center;gap:16px;margin-top:30px;padding:18px 20px;border-radius:14px;background:linear-gradient(135deg,rgba(134,233,233,.08),rgba(188,169,255,.1));border:1px solid rgba(188,200,250,.22)}
+.support-icon{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;font-size:22px;background:rgba(8,11,23,.5);border:1px solid rgba(188,200,250,.2)}
+.support strong{display:block;font-size:14px;color:#eef1f8}
+.support p{margin:3px 0 0!important;font-size:13px!important;line-height:1.6!important;color:#a9b3c8!important}
+.about-text .support-btn{margin-left:auto;flex:none;color:#091321;font-size:13px;padding:12px 16px}.about-text .support-btn:hover{color:#091321}
+@media(max-width:560px){.support{flex-wrap:wrap}.support>div{flex:1 1 calc(100% - 60px)}.about-text .support-btn{margin-left:0;width:100%}}

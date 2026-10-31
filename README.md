@@ -40,6 +40,10 @@ Each game card has a **📜 Changelog** link, and its version badge (**Version �
 
 `changelog.js` reads each game's `CHANGELOG.md` from its `main` branch when the pop-up opens, the same way `versions.js` reads `VERSION`, so new entries appear without changing this site. It expects the format both games already use: `## Version …`, then `Date:` and `Time:` lines, then `### Changes` and `### Reason` sections. If GitHub can't be reached, the pop-up says so and still links to the full changelog.
 
+## Donations
+
+The **Behind the games** section has a **Support my games** card, and the footer has a **☕ Buy me a coffee** link. Both open <https://buymeacoffee.com/zephino> in a new tab. To switch to another service later, replace that link in both places in `index.html`.
+
 ## Game suggestions
 
 Anyone can pitch a game idea from the homepage. The **💡 Suggest a game** button is in the header, the top section and under the game cards, and it opens a pop-up form. Linking to `https://zephino.github.io/Games/#suggest` opens the pop-up straight away, which is handy for sharing.
