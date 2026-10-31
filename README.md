@@ -42,7 +42,7 @@ Each game card has a **📜 Changelog** link, and its version badge (**Version �
 
 ## Donations
 
-The **Behind the games** section has a **Support my games** card, and the footer has a **☕ Buy me a coffee** link. Both open <https://buymeacoffee.com/zephino> in a new tab. To switch to another service later, replace that link in both places in `index.html`.
+The **Behind the games** section has a support card with two buttons: **Ko-fi** (<https://ko-fi.com/zephino>, the main button) and **Buy Me a Coffee** (<https://buymeacoffee.com/zephino>). The footer links to both as well. All of them open in a new tab. To change a link, replace it in both places in `index.html`.
 
 ## Game suggestions
 
