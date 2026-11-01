@@ -12,7 +12,7 @@ The responsive home for independently developed games by Zephino.
 | --- | --- | --- |
 | **Mythriven** — mythology-inspired roguelike survivor | [▶ Play Mythriven](https://zephino.github.io/Mythriven/) | [Repository](https://github.com/Zephino/Mythriven) |
 | **Wave Defence** — endless maze-building tower defence | [▶ Play Wave Defence](https://zephino.github.io/WaveDefence/) | [Repository](https://github.com/Zephino/WaveDefence) |
-| **The Last Wagon** — apocalyptic road-trip survival (coming soon, no web build yet) | Coming soon | [Repository](https://github.com/Zephino/The_Last_Wagon) |
+| **The Last Wagon** — apocalyptic road-trip survival (desktop; phones later) | [▶ Play The Last Wagon](https://zephino.github.io/The_Last_Wagon/) | [Repository](https://github.com/Zephino/The_Last_Wagon) |
 
 Both games are under active development. The launcher links directly to each game's authorized web build. It does not copy, host or embed the game executables. Each card's decorative vector artwork is an original illustration, not a screenshot from the game.
 
