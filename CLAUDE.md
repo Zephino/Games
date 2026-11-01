@@ -41,11 +41,12 @@ A homepage that showcases Zephino's browser games and lets anyone suggest a game
 - **SOLVED-02:** Game versions load live from each game's `VERSION` file (`versions.js`).
 - **SOLVED-03:** Each game's changelog opens in a pop-up from its version badge, its 📜 Changelog link, or `/#changelog-<repo>`. It loads live from that game's `CHANGELOG.md` on `main` (`changelog.js`) and is rendered as text only. Checked with both games' real changelogs: all 130 Mythriven entries render, and a load failure shows an error plus the GitHub link.
 - **SOLVED-04:** Donations: the support card in the About section and the footer link to the owner's Ko-fi `https://ko-fi.com/zephino` (main button) and Buy Me a Coffee `https://buymeacoffee.com/zephino` (both URLs came from the owner).
+- **SOLVED-05:** The Last Wagon has a full-width "Coming soon" card (no Play button). Its text comes from that game's README and changelog (v00.01.03). Its version badge and changelog load live from the public `Zephino/The_Last_Wagon` repo. When it gets a web build, add a Play link and update its "Coming to your browser" line.
 
 ### Open
 - **OPEN-01 [LOAD-BEARING]:** `[TBD: GITHUB_TOKEN expiry date]`. Fine-grained GitHub tokens expire. When this one does, every submission fails with a GitHub 401 and nobody is notified. The owner should check the expiry, and a token renewal reminder or health check is worth adding.
 - **OPEN-02 [ISOLATED]:** Every push to `main` runs two Pages deployments ("pages build and deployment" from branch mode, plus "Deploy Zephino Games" from Actions). Set Pages → Source to one of them.
 - **OPEN-03 [ISOLATED]:** Pages publishes the whole repo, including `ideas-api/`, `README.md` and `.claude/`. That's harmless (no secrets), but it's public.
 - **OPEN-04 [ISOLATED]:** The game cards use illustrations, not real screenshots. Adding one per game is the biggest visual improvement left.
-- **OPEN-05 [ISOLATED]:** The "02 games" count and the meta descriptions are hardcoded. Update them when adding a game (see README → Adding more games).
+- **OPEN-05 [ISOLATED]:** The game counts in the hero ("02 games to play", "01 coming soon") and the meta descriptions are hardcoded, and `social.png` still shows only Mythriven and Wave Defence. Update them when adding a game (see README → Adding more games).
 - **OPEN-06 [ISOLATED]:** `[TBD: Cloudflare "Preview builds" setting]`. If it's on, branch pushes create preview Worker versions.

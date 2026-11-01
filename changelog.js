@@ -14,6 +14,7 @@
   const GAMES = Object.freeze({
     Mythriven: "Mythriven",
     WaveDefence: "Wave Defence",
+    The_Last_Wagon: "The Last Wagon",
   });
   const PAGE_SIZE = 8;
 

@@ -155,3 +155,11 @@ button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:
 .about-text .support-btn.alt{color:#d5d9e9;border:1px solid rgba(192,204,249,.25)}.about-text .support-btn.alt:hover{color:#fff;background:#151b30}
 @media(max-width:560px){.support{flex-wrap:wrap}.support>div:not(.support-links){flex:1 1 calc(100% - 60px)}.support-links{margin-left:0;width:100%}.about-text .support-btn{width:100%}}
 .foot-support{display:inline-block}
+
+/* The Last Wagon (coming soon): full-width card under the other two. */
+.wagon .genre{color:#f2b36b}
+.wagon .version-badge[data-version-state="loaded"]{border-color:rgba(242,179,107,.25);color:#f5c58a}
+.wagon .play.soon{color:#f5c58a;cursor:default}.wagon .play.soon:hover{color:#f5c58a}
+.wagon .play-bubble{background:rgba(242,179,107,.16);padding-left:0}
+.wagon .art-footer{justify-content:flex-start}
+@media(min-width:721px){.cards .card.wagon{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.cards .card.wagon .art{aspect-ratio:auto;min-height:100%}.wagon .description{min-height:0}}
