@@ -13,7 +13,8 @@
   const VERSION_URLS = Object.freeze({
     Mythriven: "https://raw.githubusercontent.com/Zephino/Mythriven/main/VERSION",
     WaveDefence: "https://raw.githubusercontent.com/Zephino/WaveDefence/main/VERSION",
-    The_Last_Wagon: "https://raw.githubusercontent.com/Zephino/The_Last_Wagon/main/VERSION"
+    The_Last_Wagon: "https://raw.githubusercontent.com/Zephino/The_Last_Wagon/main/VERSION",
+    Lastborn_Colony: "https://raw.githubusercontent.com/Zephino/Lastborn_Colony/main/VERSION"
   });
   const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
   const VERSION_PATTERN = /^v?\d+(?:\.\d+){1,4}(?:[-+][a-zA-Z0-9.-]+)?$/;

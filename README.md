@@ -32,6 +32,7 @@ The homepage reads the version number directly from each public game's `VERSION`
 - [Mythriven/VERSION](https://github.com/Zephino/Mythriven/blob/main/VERSION)
 - [WaveDefence/VERSION](https://github.com/Zephino/WaveDefence/blob/main/VERSION)
 - [The_Last_Wagon/VERSION](https://github.com/Zephino/The_Last_Wagon/blob/main/VERSION)
+- [Lastborn_Colony/VERSION](https://github.com/Zephino/Lastborn_Colony/blob/main/VERSION)
 
 `versions.js` requests those files from GitHub when the homepage opens, then checks again every five minutes while the page is visible. It deliberately bypasses the browser cache and uses plain text for display. **You do not need to update or redeploy the Games homepage when a game's VERSION file changes.** No API key or backend is needed. If GitHub cannot be reached, the card says `Version unavailable` (or keeps the last successfully loaded version for that visit).
 
@@ -39,7 +40,7 @@ The displayed number is the version **on the game's GitHub `main` branch**. The 
 
 ## Game changelogs
 
-Each game card has a **📜 Changelog** link, and its version badge (**Version … · What's new**) opens the same pop-up. It shows that game's latest updates, newest first, with **Show older updates** to page back and a link to the full file on GitHub. Linking to `https://zephino.github.io/Games/#changelog-mythriven` or `#changelog-wavedefence` or `#changelog-the_last_wagon` opens it straight away.
+Each game card has a **📜 Changelog** link, and its version badge (**Version … · What's new**) opens the same pop-up. It shows that game's latest updates, newest first, with **Show older updates** to page back and a link to the full file on GitHub. Linking to `https://zephino.github.io/Games/#changelog-mythriven` or `#changelog-wavedefence`, `#changelog-the_last_wagon` or `#changelog-lastborn_colony` opens it straight away.
 
 `changelog.js` reads each game's `CHANGELOG.md` from its `main` branch when the pop-up opens, the same way `versions.js` reads `VERSION`, so new entries appear without changing this site. It expects the format both games already use: `## Version …`, then `Date:` and `Time:` lines, then `### Changes` and `### Reason` sections. If GitHub can't be reached, the pop-up says so and still links to the full changelog.
 

@@ -15,6 +15,7 @@
     Mythriven: "Mythriven",
     WaveDefence: "Wave Defence",
     The_Last_Wagon: "The Last Wagon",
+    Lastborn_Colony: "Lastborn Colony",
   });
   const PAGE_SIZE = 8;
 
