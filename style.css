@@ -162,9 +162,8 @@ button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:
 .wagon .play{color:#f5c58a}.wagon .play:hover{color:#fff}
 .wagon .play-bubble{background:rgba(242,179,107,.16)}
 
-/* Lastborn Colony (coming soon). */
+/* Lastborn Colony. */
 .colony .genre{color:#a6e38f}
 .colony .version-badge[data-version-state="loaded"]{border-color:rgba(166,227,143,.25);color:#b9eca5}
-.play.soon{cursor:default}
-.colony .play.soon,.colony .play.soon:hover{color:#b9eca5}
-.colony .play-bubble{background:rgba(166,227,143,.15);padding-left:0}
+.colony .play{color:#b9eca5}.colony .play:hover{color:#fff}
+.colony .play-bubble{background:rgba(166,227,143,.15)}
