@@ -7,6 +7,10 @@
  *
  * Defence in depth: strict field limits, a honeypot field, per-IP and global
  * daily caps. Cloudflare KV caps are best-effort, not atomic bot protection.
+ *
+ * There is no SQL database: ideas go to the GitHub API and only hashed daily
+ * counters go to KV, so visitor text is never part of a query. If a database
+ * is ever added, use bound parameters only; never build SQL from strings.
  */
 export const GENRES = Object.freeze([
   "Action", "Adventure", "Roguelike", "Tower defence", "Strategy", "Puzzle",
@@ -35,15 +39,16 @@ function reply(value, status = 200) {
 
 /**
  * Treat all visitor text as untrusted. Keep natural language (quotes,
- * semicolons) but remove non-printing and text-direction spoofing controls,
- * and defuse @mentions so a suggestion can't notify GitHub users.
+ * semicolons) but remove non-printing, invisible (zero-width) and
+ * text-direction spoofing characters, and defuse @mentions so a suggestion
+ * can't notify GitHub users.
  */
 function clean(value) {
   if (typeof value !== "string") return "";
   return value.normalize("NFC")
     .replace(/\r\n?|\u2028|\u2029/g, "\n")
     .replace(/\t/g, " ")
-    .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\u202a-\u202e\u2066-\u2069]/g, "")
+    .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\u061c\u180e\u200b-\u200f\u202a-\u202e\u2060-\u2069\ufeff]/g, "")
     .replace(/@/g, "\uff20")
     .trim();
 }
@@ -56,7 +61,8 @@ export function validateIdea(body) {
   if (body.website !== undefined && body.website !== "") {
     return { error: "invalid suggestion" };
   }
-  const title = clean(body.title).replace(/\s+/g, " ");
+  // Titles aren't Markdown-escaped by GitHub, so drop backticks (code spans).
+  const title = clean(body.title).replace(/`/g, "'").replace(/\s+/g, " ");
   const genre = clean(body.genre);
   const description = clean(body.description);
   const name = clean(body.name).replace(/\s+/g, " ");

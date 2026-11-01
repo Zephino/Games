@@ -109,3 +109,36 @@ test("rejects oversized bodies and unknown routes", async () => {
   const pre = await worker.fetch(new Request("https://example.workers.dev/ideas", { method: "OPTIONS" }), env());
   assert.equal(pre.headers.get("Access-Control-Allow-Origin"), "*");
 });
+
+test("strips invisible and direction-spoofing characters", () => {
+  const sneaky = { ...payload, title: "Space​ sta‮tion﻿", description: "Keep⁠ the crew‍ alive on a tiny station." };
+  const checked = validateIdea(sneaky);
+  assert.equal(checked.title, "Space station");
+  assert.ok(!/[​-‏‪-‮⁠-⁩﻿]/.test(checked.description));
+});
+
+test("drops backticks from titles so they can't render as code", async () => {
+  const calls = [];
+  await handleIdeaPost(request({ ...payload, title: "`rm -rf` simulator" }), env(), "1.1.1.1", github(201, calls));
+  assert.equal(calls[0].body.title, "[Game idea] 'rm -rf' simulator");
+});
+
+test("treats SQL-injection text as plain text (there is no database)", async () => {
+  const attack = "Robert'); DROP TABLE ideas;-- and 1=1 OR '1'='1' UNION SELECT * FROM users";
+  const checked = validateIdea({ ...payload, title: "x'; DROP TABLE ideas;--", description: attack });
+  assert.equal(checked.error, undefined);
+  const calls = [];
+  const res = await handleIdeaPost(request({ ...payload, description: attack }), env(), "1.1.1.1", github(201, calls));
+  assert.equal(res.status, 201);
+  // It reaches GitHub only as escaped, quoted Markdown text.
+  const body = calls[0].body.body;
+  assert.ok(body.includes("> Robert'\\); DROP TABLE ideas;\\-\\- and 1=1 OR '1'='1' UNION SELECT \\* FROM users"));
+});
+
+test("rejects non-string and wrongly shaped fields", () => {
+  assert.ok(validateIdea({ ...payload, title: { $ne: "" } }).error);
+  assert.ok(validateIdea({ ...payload, description: ["a".repeat(30)] }).error);
+  assert.ok(validateIdea({ ...payload, genre: 1 }).error);
+  assert.ok(validateIdea(null).error);
+  assert.ok(validateIdea("text").error);
+});
