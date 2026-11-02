@@ -177,3 +177,4 @@ button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:
 .clip-toggle:hover{background:rgba(8,11,23,.85)}
 .clip-toggle:focus-visible{outline:3px solid var(--aqua);outline-offset:2px}
 .clip-toggle[hidden]{display:none}
+.foot p a.site-version{color:#7683a0;text-decoration:none;font-variant-numeric:tabular-nums}.foot p a.site-version:hover{color:#b3bdd3;text-decoration:underline}

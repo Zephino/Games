@@ -18,7 +18,7 @@ There is no bubblewrap or btrfs sandbox here, so the "dry run" is:
 - Worker: `cd ideas-api && node --test test/*.test.mjs`
 - Page: serve the repo (`python3 -m http.server`) and drive it with Playwright (pre-installed). Check at 320, 375 and 1440 px wide, confirm no horizontal scroll, and look at screenshots before calling a visual change done.
 - Docs and copy: the `claim-verification` skill.
-- **Cache version:** `index.html` loads `style.css` and the scripts with `?v=<date><letter>`. Whenever you change any of them, bump that value in all four places (for example `2026-10-31a` → `2026-10-31b`). Otherwise visitors can get the new page with a cached old stylesheet for up to 10 minutes.
+- **Site version (owner request):** the site's version lives in `VERSION` (`XX.XX.XX`). The footer shows it ("Site vXX.XX.XX"), and `index.html` uses it as the `?v=` cache tag on `style.css` and every script. On **every** push, raise it by `00.00.01` (`00.01.09` → `00.01.10`; at `99` roll over to the left) in `VERSION`, the footer, and all `?v=` tags, then run `tools/check-version.sh`. It must print OK. One bump per push, so the owner can tell which update is live, and visitors never get a new page with old cached styles.
 
 ## Publishing
 

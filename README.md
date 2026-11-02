@@ -38,6 +38,10 @@ The homepage reads the version number directly from each public game's `VERSION`
 
 The displayed number is the version **on the game's GitHub `main` branch**. The playable web build may temporarily be older while its GitHub Pages deployment runs.
 
+## Site version
+
+The footer shows the site's version ("Site v00.01.00"), so you can tell which update is live. It comes from `VERSION` and goes up by `00.00.01` with every update. The same number is the `?v=` tag on the stylesheet and scripts in `index.html`, so browsers always load the files that match the page. `tools/check-version.sh` checks that all of them agree. Clicking the version opens the site's update history on GitHub.
+
 ## Gameplay clips
 
 Each game card plays three short, muted clips of real gameplay, one after another (`clips/`). They only load and play while the card is on screen. If clips can't start by themselves (the visitor has "reduce motion" turned on, or the browser blocks autoplay, as an iPhone in Low Power Mode does), the card shows a **▶ Watch gameplay** button instead, and one click plays them. `clips.js` uses the WebM version when the browser supports it, and the MP4 otherwise. To re-record them, see [`tools/clips/README.md`](tools/clips/README.md).
