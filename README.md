@@ -40,7 +40,7 @@ The displayed number is the version **on the game's GitHub `main` branch**. The 
 
 ## Gameplay clips
 
-Each game card plays three short, muted clips of real gameplay, one after another (`clips/`). They only load and play while the card is on screen. Visitors who've turned on "reduce motion" see a still image instead. `clips.js` uses the WebM version when the browser supports it, and the MP4 otherwise. To re-record them, see [`tools/clips/README.md`](tools/clips/README.md).
+Each game card plays three short, muted clips of real gameplay, one after another (`clips/`). They only load and play while the card is on screen. If clips can't start by themselves (the visitor has "reduce motion" turned on, or the browser blocks autoplay, as an iPhone in Low Power Mode does), the card shows a **▶ Watch gameplay** button instead, and one click plays them. `clips.js` uses the WebM version when the browser supports it, and the MP4 otherwise. To re-record them, see [`tools/clips/README.md`](tools/clips/README.md).
 
 ## Game changelogs
 

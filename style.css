@@ -172,4 +172,8 @@ button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:
 .clip-dots{position:absolute;z-index:1;top:14px;right:16px;display:flex;gap:6px}
 .clip-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);box-shadow:0 1px 4px rgba(0,0,0,.5);transition:background .2s,transform .2s}
 .clip-dots i.on{background:#fff;transform:scale(1.2)}
-@media(prefers-reduced-motion:reduce){.clip-dots{display:none}}
+.card{position:relative}
+.clip-toggle{position:absolute;z-index:2;top:12px;left:14px;padding:7px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.35);background:rgba(8,11,23,.62);color:#fff;font:inherit;font-size:12px;font-weight:800;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s}
+.clip-toggle:hover{background:rgba(8,11,23,.85)}
+.clip-toggle:focus-visible{outline:3px solid var(--aqua);outline-offset:2px}
+.clip-toggle[hidden]{display:none}
