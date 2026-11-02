@@ -19,7 +19,7 @@ Both games are under active development. The launcher links directly to each gam
 
 ## Publishing
 
-The source is a lightweight static website with `index.html`, `style.css`, `versions.js`, `ideas.js`, `changelog.js` and the `social.png` link-preview image at the repository root. The optional suggestion Worker in `ideas-api/` is deployed separately to Cloudflare. There are no build dependencies, API keys, user trackers or external fonts.
+The source is a lightweight static website with `index.html`, `style.css`, `versions.js`, `ideas.js`, `changelog.js`, `clips.js`, the gameplay clips in `clips/` and the `social.png` link-preview image at the repository root. The optional suggestion Worker in `ideas-api/` is deployed separately to Cloudflare. There are no build dependencies, API keys, user trackers or external fonts.
 
 If GitHub Pages is already set to **Deploy from a branch (main / root)**, GitHub will deploy the index file when the branch updates. If it is set to **GitHub Actions**, the included `.github/workflows/pages.yml` automatically builds and publishes the site on every push to `main`. The workflow also supports manual runs.
 
@@ -37,6 +37,10 @@ The homepage reads the version number directly from each public game's `VERSION`
 `versions.js` requests those files from GitHub when the homepage opens, then checks again every five minutes while the page is visible. It deliberately bypasses the browser cache and uses plain text for display. **You do not need to update or redeploy the Games homepage when a game's VERSION file changes.** No API key or backend is needed. If GitHub cannot be reached, the card says `Version unavailable` (or keeps the last successfully loaded version for that visit).
 
 The displayed number is the version **on the game's GitHub `main` branch**. The playable web build may temporarily be older while its GitHub Pages deployment runs.
+
+## Gameplay clips
+
+Each game card plays three short, muted clips of real gameplay, one after another (`clips/`). They only load and play while the card is on screen. Visitors who've turned on "reduce motion" see a still image instead. `clips.js` uses the WebM version when the browser supports it, and the MP4 otherwise. To re-record them, see [`tools/clips/README.md`](tools/clips/README.md).
 
 ## Game changelogs
 
@@ -74,7 +78,7 @@ Run the Worker tests with `npm test` in `ideas-api/`. They also run in GitHub Ac
 
 ## Adding more games
 
-In `index.html`, duplicate one of the `<article class="card ...">` elements within `<div class="cards">`. Update the displayed game name, genre, status, description, tags, the **Plays on** line (devices and controls), illustration and links to the **official web build** and GitHub repository. The existing responsive styling in `style.css` applies automatically.
+In `index.html`, duplicate one of the `<article class="card ...">` elements within `<div class="cards">`. Update the displayed game name, genre, status, description, tags, the **Plays on** line (devices and controls), gameplay clips (`data-clips` and the poster) and links to the **official web build** and GitHub repository. The existing responsive styling in `style.css` applies automatically.
 
 A few other places mention the games and need updating too:
 
