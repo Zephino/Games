@@ -178,3 +178,13 @@ button.version-badge:focus-visible{outline:3px solid var(--aqua);outline-offset:
 .clip-toggle:focus-visible{outline:3px solid var(--aqua);outline-offset:2px}
 .clip-toggle[hidden]{display:none}
 .foot p a.site-version{color:#7683a0;text-decoration:none;font-variant-numeric:tabular-nums}.foot p a.site-version:hover{color:#b3bdd3;text-decoration:underline}
+.log-full[hidden]{display:none}
+
+/* GemScout (coming soon) and the odd-card-out layout: when the last card is
+   alone on its row, it spans both columns with the art beside the text. */
+.gem .genre{color:#7ff0e0}
+.gem .version-badge[data-version-state="loaded"]{border-color:rgba(127,240,224,.25);color:#9ff5e8}
+.gem .play.soon{cursor:default;color:#9ff5e8}
+.gem .play-bubble{background:rgba(127,240,224,.14);padding-left:0}
+.art svg{display:block;width:100%;height:100%}
+@media(min-width:721px){.cards .card:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.cards .card:last-child:nth-child(odd) .art{aspect-ratio:auto;min-height:100%}.cards .card:last-child:nth-child(odd) .description{min-height:0}}

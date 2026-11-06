@@ -16,6 +16,7 @@
     WaveDefence: "Wave Defence",
     The_Last_Wagon: "The Last Wagon",
     Lastborn_Colony: "Lastborn Colony",
+    GemScout: "GemScout",
   });
   const PAGE_SIZE = 8;
 
@@ -167,6 +168,8 @@
     if (!cache[repo]) {
       cache[repo] = fetch(rawUrl(repo), { cache: "no-cache" })
         .then((response) => {
+          // A game that hasn't started its changelog yet: show "no updates yet".
+          if (response.status === 404) return "";
           if (!response.ok) throw new Error("GitHub returned " + response.status);
           return response.text();
         })
@@ -184,7 +187,12 @@
     try {
       const entries = await load(repo);
       if (!current || current.repo !== repo) return; // closed or switched meanwhile
-      if (!entries.length) throw new Error("no entries found");
+      if (!entries.length) {
+        status.textContent = "No updates logged yet. Check back soon!";
+        status.dataset.state = "";
+        modal.querySelector("[data-log-full]").hidden = true;
+        return;
+      }
       current.entries = entries;
       status.textContent = "";
       status.dataset.state = "";
@@ -208,6 +216,7 @@
     current = { repo, entries: [], shown: 0 };
     modal.querySelector("[data-log-title]").textContent = GAMES[repo];
     modal.querySelector("[data-log-full]").href = pageUrl(repo);
+    modal.querySelector("[data-log-full]").hidden = false;
     modal.querySelector(".modal-inner").scrollTop = 0;
     if (!modal.open) modal.showModal();
     modal.querySelector(".modal-close").focus();
