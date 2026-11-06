@@ -17,7 +17,7 @@ These use Godot's **Movie Maker** mode, which renders every frame at a fixed 30 
    ```
    Mythriven must be the **debug** build that its own workflow publishes. Running from the editor binary like this is a debug run, so its heroes show up. A release build hides heroes whose mythology isn't checked yet.
 
-The scripts: `mythriven-heracles.json`, `mythriven-cu-chulainn.json`, `lastwagon.json` and `lastborn.json`. Lastborn Colony uses map seed 4242, so its runs repeat exactly. The Last Wagon is random every run, so its script presses buttons by label and auto-answers events.
+The scripts: `mythriven-heracles.json`, `mythriven-cu-chulainn.json`, `lastwagon.json`, `lastborn.json` and `gemscout.json`. Lastborn Colony uses map seed 4242, so its runs repeat exactly. The Last Wagon is random every run, so its script presses buttons by label and auto-answers events.
 
 ## Wave Defence
 
